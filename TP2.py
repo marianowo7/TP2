@@ -7,26 +7,26 @@
 
 def main():
     porcentaje_iva = 1.21
-    global dato1  
-    global dato2
-    global dato3
-    dato1 = ""
-    dato2 = 0
-    dato3 = False
+    global nombre  
+    global valor
+    global vof
+    nombre = ""
+    valor = 0
+    vof = False
 
     def ingresarNombre(): 
       nombreProducto = str(input( "Ingrese el nombre del producto : ",)) #No recibe parámetro y retorna valor
       return nombreProducto
       
-
     def ingresarValor(): 
       valorProducto = int(input("Ingrese el valor del producto (sin comas) : ")) #No recibe parámetro y retorna valor
       return valorProducto
     
-    def ingresarProducto():  ## No recibe parámetro y no retorna valor
-        global dato1  
-        global dato2
-        global dato3
+    def obtenerDatosProducto():  ## No recibe parámetro y no retorna valor
+        global nombre  
+        global valor
+        global vof
+
         nombreProducto = ingresarNombre()
 
         valorProducto = ingresarValor()
@@ -41,15 +41,14 @@ def main():
         pagar_en_cuotas = input("Desea pagar en cuotas? (si o no) : ",)
         if (pagar_en_cuotas == "si" or pagar_en_cuotas == "SI"or pagar_en_cuotas == "Si"):
             pagoEnCuotas(nombreProducto, valorProducto)
-            dato1 = nombreProducto
-            dato2 = valorProducto
-            dato3 = False
+            nombre = nombreProducto
+            valor = valorProducto
+            vof = True
         else:
-            dato1 = nombreProducto
-            dato2 = valorProducto
-            dato3 = True
+            nombre = nombreProducto
+            valor = valorProducto
+            vof = False
             
-
     def pagoEnCuotas(nombre, valor): ## Recibe parametro y no retorna valor
         cuantas_cuotas = int( input("desea pagar en 3, 6 , 12 cuotas?(Ingresar numero de cuotas) : ", ))
 
@@ -80,11 +79,10 @@ def main():
             print("Usted compró " + str(nombre))
             print("En tres cuotas de " + str(valor_en_tres_cuotas) + "$")
             print("(Total de " + str(valor_total_en_tres_cuotas) + "$)")
-
-    
-    def unPago(nombre, valor, c): # Recibe parámetro y retorna valor
-        cuotas = c
-        if cuotas == True:
+   
+    def unPago(nombre, valor, vof): # Recibe parámetro y retorna valor
+        cuotas = vof
+        if cuotas == False:
             precio_total = round(valor * porcentaje_iva)
             total =   "Usted compró "+ nombre + " con el valor total de " + str(precio_total) + " (Iva incuido)"
             return total
@@ -92,7 +90,8 @@ def main():
             total = "Se pagó en cuotas"
             return total
    
-    ingresarProducto()
-    pago = unPago(dato1, dato2, dato3)
+    obtenerDatosProducto()
+    pago = unPago(nombre, valor, vof)
     print(pago)
+    
 main()
