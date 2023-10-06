@@ -1,3 +1,10 @@
+#Carrito de Compras
+
+
+#En el siguiente programa se busca proporcionar al usuario la opción de calcular el costo total de un producto, incluyendo impuestos y posibilidad de pago en cuotas. Se le solicitará el nombre y el valor del producto, así como si desea pagar en cuotas. En caso afirmativo, se le pedirá la cantidad de cuotas. El programa luego calculará el costo total en base a la opción elegida.
+#Variables de entrada: Nombre y valor del producto, cantidad de cuotas a pagar.
+#Datos de salida: Confirmación e información de la compra, cantidad y valor de cuotas, valor total
+
 def main():
     porcentaje_iva = 1.21
     global dato1  
