@@ -81,8 +81,8 @@ def main():
             print("En tres cuotas de " + str(valor_en_tres_cuotas) + "$")
             print("(Total de " + str(valor_total_en_tres_cuotas) + "$)")
 
-    ## Recibe parámetro y retorna valor
-    def unPago(nombre, valor, c):
+    
+    def unPago(nombre, valor, c): # Recibe parámetro y retorna valor
         cuotas = c
         if cuotas == True:
             precio_total = round(valor * porcentaje_iva)
