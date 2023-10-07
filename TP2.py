@@ -31,9 +31,9 @@ def main():
 
         valorProducto = ingresarValor()
 
-        if valorProducto < 0:
+        if valorProducto < 0 or nombreProducto == "":
             response_menos_que_cero = str(
-                input("El valor ingresado no puede ser cero o menor que cero, presione 1 para reiniciar el programa : " )
+                input("El valor ingresado no puede ser cero o menor que cero / el nombre del producto no puede estar vacio, presione 1 para reiniciar el programa : " )
             )
             if response_menos_que_cero == "1":
                 main()
@@ -91,6 +91,7 @@ def main():
             return total
    
     obtenerDatosProducto()
+
     pago = unPago(nombre, valor, vof)
     print(pago)
     
