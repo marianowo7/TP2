@@ -20,59 +20,36 @@ def main():
 
     def obtenerDatosProducto():  # No recibe parámetro y no retorna valor
         cantidad_productos = int(input("Cuantos productos desea comprar? : ", ))
-
+        
         for i in range(cantidad_productos):
-
             eleccion_productos = int(input("Ingrese el tipo de producto que desea comprar: 1. Mouse, 2. Teclado, 3. Auricular : "))
-            if eleccion_productos == 1:
-                i = 0
-                int(i)
-                for mouse in lista_mouse:
-                    print( str(i) + ". " + mouse)
-                    int(i)
-                    i = i+1
-                num_producto = int(input("Escriba el numero del producto que desea comprar : ", ))
-                productos_carrito.append(lista_mouse[num_producto])
-                precio_carrito.append(lista_mouse_precios[num_producto])
-                print(productos_carrito)
-                print(precio_carrito)
+            lista_productos = []
+            lista_precio = []
+            if eleccion_productos == 1: 
+                lista_productos = lista_mouse
+                lista_precio = lista_mouse_precios
             elif eleccion_productos == 2:
-                i = 0
-                int(i)
-                for teclado in lista_teclado:
-                    print( str(i) + ". " + teclado)
-                    int(i)
-                    i = i+1
-                num_producto = int(input("Escriba el número del producto que desea comprar : ", ))
-                productos_carrito.append(lista_teclado[num_producto])
-                precio_carrito.append(lista_teclado_precios[num_producto])
-                print(productos_carrito)
-                print(precio_carrito)
+                lista_productos = lista_teclado
+                lista_precio = lista_teclado_precios
             elif eleccion_productos == 3:
-                i = 0
-                int(i)
-                for auricular in lista_auricular:
-                    print( str(i) + ". " + auricular)
-                    int(i)
-                    i = i+1
-                num_producto = int(input("Escriba el numero del producto que desea comprar : ", ))
-                productos_carrito.append(lista_auricular[num_producto])
-                precio_carrito.append(lista_auricular_precios[num_producto])
-                print(productos_carrito)
-                print(precio_carrito)
+                lista_productos = lista_auricular
+                lista_precio = lista_auricular_precios
+        
+            for producto in lista_productos:
+                print(producto)
+            num_producto = int(input("Escriba el numero del producto que desea comprar : ", ))
+            productos_carrito.append(lista_productos[num_producto])
+            precio_carrito.append(lista_precio[num_producto])
+            print(productos_carrito)
+            print(precio_carrito)
+        cuantasCuotas(precio_carrito)
 
-        cuantasCuotas(productos_carrito)
-            
     def cuantasCuotas(productos): # Recibe parametro y no retorna valor
 
         print("Usted tiene en el carrito los siguientes productos : ")
 
-        i = 1
-
         for producto in productos:
-            print(str(i) + ". " + producto)
-            i += 1
-
+            print(producto)
         precioTotal = 0
         for carrito in precio_carrito:
             precioTotal += carrito
