@@ -65,39 +65,47 @@ def main():
                 print(precio_carrito)
                 
 
-            pagar_en_cuotas = input("Desea pagar en cuotas? (si o no) : ",)
-            if (pagar_en_cuotas == "si" or pagar_en_cuotas == "SI"or pagar_en_cuotas == "Si"):
-                pagoEnCuotas(productos_carrito, precio_carrito)
+        pagar_en_cuotas = input("Desea pagar en cuotas? (si o no) : ",)
+        if (pagar_en_cuotas == "si" or pagar_en_cuotas == "SI"or pagar_en_cuotas == "Si"):
+            cuantasCuotas(productos_carrito, precio_carrito)
             # else:
             #     nombre = nombreProducto
             #     valor = valorProducto
             #     vof = False
             
-    def pagoEnCuotas(productos, valor_productos): # Recibe parametro y no retorna valor
+    def cuantasCuotas(productos, valor_productos): # Recibe parametro y no retorna valor
+
+        print("Usted tiene en el carrito los siguientes productos : ")
+        i = 1
+        for producto in productos:
+            print(str(i) + ". " + producto)
+            i += 1
         cuantas_cuotas = int( input("desea pagar en 3, 6 , 12 cuotas?(Ingresar numero de cuotas) : ", ))
 
-        # if cuantas_cuotas == 3:
-        #     valor_total_en_tres_cuotas = round(valor * 1.2994 * porcentaje_iva)
-        #     valor_en_tres_cuotas = round(valor_total_en_tres_cuotas / 3)
-        #     print("")
-        #     print("Usted compró " + str(nombre))
-        #     print("En tres cuotas de " + str(valor_en_tres_cuotas) + "$")
-        #     print("(Total de " + str(valor_total_en_tres_cuotas) + "$)")
-        # elif cuantas_cuotas == 6:
-        #     valor_total_en_tres_cuotas = round(valor * 1.5412 * porcentaje_iva)
-        #     valor_en_tres_cuotas = round(valor_total_en_tres_cuotas / 6)
-        #     print("")
-        #     print("Usted compró " + str(nombre))
-        #     print("En tres cuotas de " + str(valor_en_tres_cuotas) + "$")
-        #     print("(Total de " + str(valor_total_en_tres_cuotas) + "$)")
-        # elif cuantas_cuotas == 12:
-        #     valor_total_en_tres_cuotas = round(valor * 2.04101 * porcentaje_iva)
-        #     valor_en_tres_cuotas = round(valor_total_en_tres_cuotas / 12)
-        #     print("")
-        #     print("Usted compró " + str(nombre))
-        #     print("En tres cuotas de " + str(valor_en_tres_cuotas) + "$")
-        #     print("(Total de " + str(valor_total_en_tres_cuotas) + "$)")
-   
+        if cuantas_cuotas == 3:
+            valor_total_en_tres_cuotas = round(valor * 1.2994 * porcentaje_iva)
+            valor_en_tres_cuotas = round(valor_total_en_tres_cuotas / 3)
+            print("")
+            print("Usted compró " + str(nombre))
+            print("En tres cuotas de " + str(valor_en_tres_cuotas) + "$")
+            print("(Total de " + str(valor_total_en_tres_cuotas) + "$)")
+        elif cuantas_cuotas == 6:
+            valor_total_en_tres_cuotas = round(valor * 1.5412 * porcentaje_iva)
+            valor_en_tres_cuotas = round(valor_total_en_tres_cuotas / 6)
+            print("")
+            print("Usted compró " + str(nombre))
+            print("En tres cuotas de " + str(valor_en_tres_cuotas) + "$")
+            print("(Total de " + str(valor_total_en_tres_cuotas) + "$)")
+        elif cuantas_cuotas == 12:
+            valor_total_en_tres_cuotas = round(valor * 2.04101 * porcentaje_iva)
+            valor_en_tres_cuotas = round(valor_total_en_tres_cuotas / 12)
+            print("")
+            print("Usted compró " + str(nombre))
+            print("En tres cuotas de " + str(valor_en_tres_cuotas) + "$")
+            print("(Total de " + str(valor_total_en_tres_cuotas) + "$)")
+    
+    def calculoEnCuotas(a,b,c):
+        asd = 1
     def unPago(nombre, valor, vof): # Recibe parámetro y retorna valor
         cuotas = vof
         if cuotas == False:
