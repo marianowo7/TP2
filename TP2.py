@@ -7,9 +7,6 @@
 
 def main():
     porcentaje_iva = 1.21
-    nombre = ""
-    valor = 0
-    vof = False
 
     lista_mouse = ["Logitech G pro", "Logitech G203", "Razer Deathadder V2", "Razer Naga", "Redragon M711", "Redragon M808"]
     lista_mouse_precios = [70, 50, 80, 85, 40, 45]
@@ -63,62 +60,46 @@ def main():
                 precio_carrito.append(lista_auricular_precios[num_producto])
                 print(productos_carrito)
                 print(precio_carrito)
-                
 
-        pagar_en_cuotas = input("Desea pagar en cuotas? (si o no) : ",)
-        if (pagar_en_cuotas == "si" or pagar_en_cuotas == "SI"or pagar_en_cuotas == "Si"):
-            cuantasCuotas(productos_carrito, precio_carrito)
-            # else:
-            #     nombre = nombreProducto
-            #     valor = valorProducto
-            #     vof = False
+        cuantasCuotas(productos_carrito)
             
-    def cuantasCuotas(productos, valor_productos): # Recibe parametro y no retorna valor
+    def cuantasCuotas(productos): # Recibe parametro y no retorna valor
 
         print("Usted tiene en el carrito los siguientes productos : ")
         i = 1
         for producto in productos:
             print(str(i) + ". " + producto)
             i += 1
-        cuantas_cuotas = int( input("desea pagar en 3, 6 , 12 cuotas?(Ingresar numero de cuotas) : ", ))
+        precioTotal = 0
+        for carrito in precio_carrito:
+            precioTotal += carrito
+        print("A un total de " + str(precioTotal)+"$USD")
 
-        if cuantas_cuotas == 3:
-            valor_total_en_tres_cuotas = round(valor * 1.2994 * porcentaje_iva)
-            valor_en_tres_cuotas = round(valor_total_en_tres_cuotas / 3)
-            print("")
-            print("Usted compró " + str(nombre))
-            print("En tres cuotas de " + str(valor_en_tres_cuotas) + "$")
-            print("(Total de " + str(valor_total_en_tres_cuotas) + "$)")
-        elif cuantas_cuotas == 6:
-            valor_total_en_tres_cuotas = round(valor * 1.5412 * porcentaje_iva)
-            valor_en_tres_cuotas = round(valor_total_en_tres_cuotas / 6)
-            print("")
-            print("Usted compró " + str(nombre))
-            print("En tres cuotas de " + str(valor_en_tres_cuotas) + "$")
-            print("(Total de " + str(valor_total_en_tres_cuotas) + "$)")
-        elif cuantas_cuotas == 12:
-            valor_total_en_tres_cuotas = round(valor * 2.04101 * porcentaje_iva)
-            valor_en_tres_cuotas = round(valor_total_en_tres_cuotas / 12)
-            print("")
-            print("Usted compró " + str(nombre))
-            print("En tres cuotas de " + str(valor_en_tres_cuotas) + "$")
-            print("(Total de " + str(valor_total_en_tres_cuotas) + "$)")
-    
-    def calculoEnCuotas(a,b,c):
-        asd = 1
-    def unPago(nombre, valor, vof): # Recibe parámetro y retorna valor
-        cuotas = vof
-        if cuotas == False:
-            precio_total = round(valor * porcentaje_iva)
-            total =   "Usted compró "+ nombre + " con el valor total de " + str(precio_total) + " (Iva incuido)"
-            return total
+        pagar_en_cuotas = input("Desea pagar en cuotas? (si o no) : ",)
+        if (pagar_en_cuotas == "si" or pagar_en_cuotas == "SI"or pagar_en_cuotas == "Si"):
+            
+            cuantas_cuotas = int( input("desea pagar en 3, 6 , 12 cuotas?(Ingresar numero de cuotas) : ", ))
+            
+            if cuantas_cuotas == 3:
+                calculoEnCuotas(1.2994, 3, precioTotal)
+            elif cuantas_cuotas == 6:
+                calculoEnCuotas(1.5412, 6, precioTotal)
+            elif cuantas_cuotas == 12:
+                calculoEnCuotas(2.04101, 12, precioTotal)
         else:
-            total = "Se pagó en cuotas"
-            return total
+            unPago(precioTotal)
+
+    
+    def calculoEnCuotas(intres,cuotas,precioCarrito):
+        precio_final = round(precioCarrito * intres)
+        precio_final_en_cuotas = round(precio_final / cuotas)
+
+        print("El precio final es de " + str(precio_final)+"$ USD")
+        print("En " +str(cuotas) + " cuotas de " +str(precio_final_en_cuotas)+"$ USD")
+        
+    def unPago(precioTotal): # Recibe parámetro y retorna valor
+        print("El precio Final es de " + str(precioTotal*porcentaje_iva) + " USD$ (iva incluido)")
    
     obtenerDatosProducto()
-
-    # pago = unPago(nombre, valor, vof)
-    # print(pago)
     
 main()
