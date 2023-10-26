@@ -66,10 +66,13 @@ def main():
     def cuantasCuotas(productos): # Recibe parametro y no retorna valor
 
         print("Usted tiene en el carrito los siguientes productos : ")
+
         i = 1
+
         for producto in productos:
             print(str(i) + ". " + producto)
             i += 1
+
         precioTotal = 0
         for carrito in precio_carrito:
             precioTotal += carrito
@@ -103,3 +106,6 @@ def main():
     obtenerDatosProducto()
     
 main()
+
+#en el parte practica va todo lo q se vio en clase, mas algunas preguntas para resolver pequeños ejercicios en el parcial.
+#dsp viene la parte oral en donde se hacen preguntas conceptuales. Inscribirse como libre cuando se abran las mesas de examen.
