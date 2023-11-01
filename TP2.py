@@ -1,11 +1,11 @@
 #Carrito de Compras
 
-
 #En el siguiente programa se busca proporcionar al usuario la opción de calcular el costo total de un producto, incluyendo impuestos y posibilidad de pago en cuotas. Se le solicitará el nombre y el valor del producto, así como si desea pagar en cuotas. En caso afirmativo, se le pedirá la cantidad de cuotas. El programa luego calculará el costo total en base a la opción elegida.
 #Variables de entrada: Nombre y valor del producto, cantidad de cuotas a pagar.
 #Datos de salida: Confirmación e información de la compra, cantidad y valor de cuotas, valor total
 
 def main():
+    global precios_finales_cuotas, precios_finales, cantidad_cuotas_seleccionadas
     porcentaje_iva = 1.21
 
     lista_mouse = ["Logitech G pro", "Logitech G203", "Razer Deathadder V2", "Razer Naga", "Redragon M711", "Redragon M808"]
@@ -17,10 +17,13 @@ def main():
 
     productos_carrito = []
     precio_carrito = []
+    precios_finales = 0
+    precios_finales_cuotas = 0
+    cantidad_cuotas_seleccionadas = 0
 
     def obtenerDatosProducto():  # No recibe parámetro y no retorna valor
         cantidad_productos = int(input("Cuantos productos desea comprar? : ", ))
-        
+        x = 0
         for i in range(cantidad_productos):
             eleccion_productos = int(input("Ingrese el tipo de producto que desea comprar: 1. Mouse, 2. Teclado, 3. Auricular : "))
             lista_productos = []
@@ -34,20 +37,21 @@ def main():
             elif eleccion_productos == 3:
                 lista_productos = lista_auricular
                 lista_precio = lista_auricular_precios
-        
+            
             for producto in lista_productos:
-                print(producto)
+                print(str(x) + " " + producto)
+                x + 1
+                int(x)
+                
             num_producto = int(input("Escriba el numero del producto que desea comprar : ", ))
             productos_carrito.append(lista_productos[num_producto])
             precio_carrito.append(lista_precio[num_producto])
             print(productos_carrito)
             print(precio_carrito)
-        cuantasCuotas(precio_carrito)
 
-    def cuantasCuotas(productos): # Recibe parametro y no retorna valor
-
+    def EleccionCuotas(productos): # Recibe parametro y no retorna valor
+        global cantidad_cuotas_seleccionadas
         print("Usted tiene en el carrito los siguientes productos : ")
-
         for producto in productos:
             print(producto)
         precioTotal = 0
@@ -59,7 +63,7 @@ def main():
         if (pagar_en_cuotas == "si" or pagar_en_cuotas == "SI"or pagar_en_cuotas == "Si"):
             
             cuantas_cuotas = int( input("desea pagar en 3, 6 , 12 cuotas?(Ingresar numero de cuotas) : ", ))
-            
+            cantidad_cuotas_seleccionadas = cuantas_cuotas
             if cuantas_cuotas == 3:
                 calculoEnCuotas(1.2994, 3, precioTotal)
             elif cuantas_cuotas == 6:
@@ -71,18 +75,38 @@ def main():
 
     
     def calculoEnCuotas(intres,cuotas,precioCarrito):
+        global precios_finales_cuotas, precios_finales
         precio_final = round(precioCarrito * intres)
         precio_final_en_cuotas = round(precio_final / cuotas)
 
         print("El precio final es de " + str(precio_final)+"$ USD")
         print("En " +str(cuotas) + " cuotas de " +str(precio_final_en_cuotas)+"$ USD")
+        precios_finales += precio_final
+        precios_finales_cuotas += precio_final_en_cuotas
         
     def unPago(precioTotal): # Recibe parámetro y retorna valor
         print("El precio Final es de " + str(precioTotal*porcentaje_iva) + " USD$ (iva incluido)")
+        precios_finales.append(precioTotal)
+        print(precios_finales)
    
-    obtenerDatosProducto()
-    
-main()
+    def tipoDePago():
+        global precios_finales_cuotas, precios_finales, cantidad_cuotas_seleccionadas
+        tipo_de_pago = int(input("Ingrese 1 para pagar con debito/contado (5% descuento) o ingrese 2 para pagar con tarjeta (15% de recargo) : ", ))
+        if tipo_de_pago == 1:
+            precios_finales = precios_finales + (precios_finales * 0.05)
+            precios_finales_cuotas = precios_finales / cantidad_cuotas_seleccionadas
+            print("Su nuevo precio es de " + str(precios_finales)+"$USD por pagar con debito/contado")
+            print("En "+ str(cantidad_cuotas_seleccionadas) +" de " + str(precios_finales_cuotas))
+        else:
+            precios_finales = precios_finales * 1.15
+            precios_finales_cuotas = precios_finales / cantidad_cuotas_seleccionadas
+            print("Su nuevo precio es de " + str(precios_finales)+"$USD por pagar con tarjeta")
+            print("En "+ str(cantidad_cuotas_seleccionadas) +" de " + str(precios_finales_cuotas))
+            
 
-#en el parte practica va todo lo q se vio en clase, mas algunas preguntas para resolver pequeños ejercicios en el parcial.
-#dsp viene la parte oral en donde se hacen preguntas conceptuales. Inscribirse como libre cuando se abran las mesas de examen.
+
+    obtenerDatosProducto()
+    EleccionCuotas(productos_carrito) 
+    tipoDePago()
+
+main()
