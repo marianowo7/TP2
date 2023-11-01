@@ -98,12 +98,12 @@ def main():
                 precios_finales = round(precios_finales - (precios_finales * 0.05))
                 precios_finales_cuotas = round(precios_finales / cantidad_cuotas_seleccionadas)
                 print("Su nuevo precio es de " + str(precios_finales)+"$USD por pagar con debito/contado")
-                print("En "+ str(cantidad_cuotas_seleccionadas) +" de " + str(precios_finales_cuotas))
+                print("En "+ str(cantidad_cuotas_seleccionadas) +" cuotas de " + str(precios_finales_cuotas) +"USD$")
             else:
                 precios_finales = round(precios_finales * 1.15)
                 precios_finales_cuotas = round(precios_finales / cantidad_cuotas_seleccionadas)
                 print("Su nuevo precio es de " + str(precios_finales)+"$USD por pagar con tarjeta")
-                print("En "+ str(cantidad_cuotas_seleccionadas) +" de " + str(precios_finales_cuotas))
+                print("En "+ str(cantidad_cuotas_seleccionadas) +" cuotas de " + str(precios_finales_cuotas) +"USD$")
         else:
             if tipo_de_pago == 1:
                 precios_finales = round(precios_finales - (precios_finales * 0.05))
