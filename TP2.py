@@ -85,25 +85,32 @@ def main():
         precios_finales_cuotas += precio_final_en_cuotas
         
     def unPago(precioTotal): # Recibe parámetro y retorna valor
+        global precios_finales
         print("El precio Final es de " + str(precioTotal*porcentaje_iva) + " USD$ (iva incluido)")
-        precios_finales.append(precioTotal)
         print(precios_finales)
+        precios_finales = precioTotal*porcentaje_iva
    
     def tipoDePago():
         global precios_finales_cuotas, precios_finales, cantidad_cuotas_seleccionadas
         tipo_de_pago = int(input("Ingrese 1 para pagar con debito/contado (5% descuento) o ingrese 2 para pagar con tarjeta (15% de recargo) : ", ))
-        if tipo_de_pago == 1:
-            precios_finales = precios_finales + (precios_finales * 0.05)
-            precios_finales_cuotas = precios_finales / cantidad_cuotas_seleccionadas
-            print("Su nuevo precio es de " + str(precios_finales)+"$USD por pagar con debito/contado")
-            print("En "+ str(cantidad_cuotas_seleccionadas) +" de " + str(precios_finales_cuotas))
+        if cantidad_cuotas_seleccionadas > 0:
+            if tipo_de_pago == 1:
+                precios_finales = round(precios_finales - (precios_finales * 0.05))
+                precios_finales_cuotas = round(precios_finales / cantidad_cuotas_seleccionadas)
+                print("Su nuevo precio es de " + str(precios_finales)+"$USD por pagar con debito/contado")
+                print("En "+ str(cantidad_cuotas_seleccionadas) +" de " + str(precios_finales_cuotas))
+            else:
+                precios_finales = round(precios_finales * 1.15)
+                precios_finales_cuotas = round(precios_finales / cantidad_cuotas_seleccionadas)
+                print("Su nuevo precio es de " + str(precios_finales)+"$USD por pagar con tarjeta")
+                print("En "+ str(cantidad_cuotas_seleccionadas) +" de " + str(precios_finales_cuotas))
         else:
-            precios_finales = precios_finales * 1.15
-            precios_finales_cuotas = precios_finales / cantidad_cuotas_seleccionadas
-            print("Su nuevo precio es de " + str(precios_finales)+"$USD por pagar con tarjeta")
-            print("En "+ str(cantidad_cuotas_seleccionadas) +" de " + str(precios_finales_cuotas))
-            
-
+            if tipo_de_pago == 1:
+                precios_finales = round(precios_finales - (precios_finales * 0.05))
+                print("Su nuevo precio es de " + str(precios_finales)+"$USD por pagar con debito/contado")
+            elif tipo_de_pago == 2:
+                precios_finales = round(precios_finales * 1.15)
+                print("Su nuevo precio es de " + str(precios_finales)+"$USD por pagar con tarjeta")
 
     obtenerDatosProducto()
     EleccionCuotas(productos_carrito) 
