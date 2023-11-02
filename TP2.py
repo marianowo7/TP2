@@ -1,6 +1,6 @@
 #Carrito de Compras
 
-#En el siguiente programa se busca proporcionar al usuario la opción de calcular el costo total de un producto, incluyendo impuestos y posibilidad de pago en cuotas. Se le solicitará el nombre y el valor del producto, así como si desea pagar en cuotas. En caso afirmativo, se le pedirá la cantidad de cuotas. El programa luego calculará el costo total en base a la opción elegida.
+#En el siguiente programa se busca proporcionar al usuario la opción de calcular el costo total de un producto, incluyendo impuestos y posibilidad de pago en cuotas.También se le dara la posibilidad de pagar en contado/debito o cuotas, afectando su precio. Se le solicitará al usuario ingresar el pdoruicto que desea comprar, así como si desea pagar en cuotas. En caso afirmativo, se le pedirá la cantidad de cuotas. El programa luego calculará el costo total en base a la opción elegida.
 #Variables de entrada: Nombre y valor del producto, cantidad de cuotas a pagar.
 #Datos de salida: Confirmación e información de la compra, cantidad y valor de cuotas, valor total
 
@@ -88,7 +88,6 @@ def main():
     def unPago(precioTotal): # Recibe parámetro y retorna valor
         global precios_finales
         print("El precio Final es de " + str(precioTotal*porcentaje_iva) + " USD$ (iva incluido)")
-        print(precios_finales)
         precios_finales = precioTotal*porcentaje_iva
    
     def tipoDePago():
